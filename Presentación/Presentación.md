@@ -7,3 +7,5 @@ Estudiante de Matemáticas, UdeA.
 # Yuli Andrea Cruz Torres, yulitorres97@utp.edu.co
 Ingeniera Industrial, Universidad Tecnologica de Pereira
 
+# Erick Santiago Díaz Bueno, erdiazbueno@unal.edu.co
+Estudiante de Ingeniería Química, Universidad Nacional, Bogotá
