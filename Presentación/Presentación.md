@@ -3,3 +3,7 @@ Economista, de Medellín egresada de la UdeA
 
 # Mateo Soto Arango, mateo.sotoa@udea.edu.co
 Estudiante de Matemáticas, UdeA.
+
+# Yuli Andrea Cruz Torres, yulitorres97@utp.edu.co
+Ingeniera Industrial, Universidad Tecnologica de Pereira
+
