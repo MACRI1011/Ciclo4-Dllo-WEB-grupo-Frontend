@@ -7,7 +7,7 @@ Economista, de Medellín egresada de la UdeA
 Estudiante de Matemáticas, UdeA
 
 >## Yuli Andrea Cruz Torres, yulitorres97@utp.edu.co
-Ingeniera Industrial, Universidad Tecnologica de Pereira
+Ingeniera Industrial, egreasada de la Universidad Tecnologica de Pereira. Soy de Buenaventura pero actualmente vivo en Medellin, trabajo para una empresa de pronta moda.
 
 >## Erick Santiago Díaz Bueno, erdiazbueno@unal.edu.co
 Estudiante de Ingeniería Química, Universidad Nacional, Bogotá
