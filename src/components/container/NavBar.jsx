@@ -1,8 +1,11 @@
 import React from 'react'
 import { NavDropdown } from 'react-bootstrap';
 import { Link, NavLink, useNavigate } from 'react-router-dom'
+import useAuth from '../../hooks/useAuth';
 
 const Navbar = () => {
+
+    const auth = useAuth();
 
     const navigate = useNavigate();
 
@@ -13,10 +16,7 @@ const Navbar = () => {
         });
     }
 
-    // Ejemplo para generar NavBars distitntos según el rol del usuario
-    const perfil = "Administrador";
-    // const perfil = "Estudiante";
-    // const perfil = "Lider";
+    const perfil = auth.user.rol;
 
     return (
         <nav className='navbar navbar-expand-sm navbar-dark bg-success'>
@@ -107,7 +107,7 @@ const Navbar = () => {
                 <ul className="navbar-nav ml-auto">
 
                     <span className='nav-item nav-link text-info'>
-                        Santiago
+                    auth.user.nombre
                     </span>
 
                     <button
