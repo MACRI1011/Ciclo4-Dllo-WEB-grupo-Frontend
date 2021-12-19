@@ -5,6 +5,7 @@ import {
     Route
 } from "react-router-dom";
 import NavBar from '../components/container/NavBar';
+import Registro from '../components/login/Registro';
 import AddProyecto from '../components/proyectos/AddProyecto';
 import AddInscripcion from '../components/inscripciones/AddInscripcion';
 import EditProyecto from '../components/proyectos/EditProyecto';
@@ -34,6 +35,7 @@ const ContentRoutes = () => {
 
                 
                 <Route path="/" element={<Usuario />} />
+                <Route path="/registro" element={<Registro/>} />
             </Routes>
 
         </>
