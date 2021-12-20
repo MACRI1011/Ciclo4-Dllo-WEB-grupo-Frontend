@@ -4,8 +4,12 @@ const GET_INSCRIPCIONES = gql`
         query {            
             Inscripciones {
                 id
-                proyecto_id
-                usuario_id
+                proyecto_id {
+                    nombre
+                }
+                usuario_id {
+                    nombre
+                }
                 estado
                 fechaIngreso
                 fechaEgreso

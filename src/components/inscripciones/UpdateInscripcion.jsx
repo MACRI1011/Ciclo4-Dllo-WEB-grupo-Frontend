@@ -7,74 +7,59 @@ import GET_INSCRIPCION_BY_ID from '../../apollo/gql/getInscripcionById';
 import useAuth from '../../hooks/useAuth';
 
 const UpdateInscripcion = () => {
-   
 
-    const {id} = useParams();
+    const { id } = useParams();
     const navigate = useNavigate();
-    const {loading, data, error} =useQuery(GET_INSCRIPCION_BY_ID, {
+    const { loading, data, error } = useQuery(GET_INSCRIPCION_BY_ID, {
         variables: {
             id
         }
     });
     const [updateInscripcion] = useMutation(UPDATE_INSCRIPCION);
-    const {register, handleSubmit} = useForm();
+
+    const { register, handleSubmit } = useForm();
+
     const handleUpdate = (args) => {
         console.log('actualizar');
         console.log(data);
 
-        const {proyecto_id, usuario_id, estado, fechaIngreso } = args;
+        const { proyecto_id, usuario_id, estado, fechaIngreso } = args;
 
-        updateInscripcion({ variables: {proyecto_id, usuario_id, estado, fechaIngreso} });
+        updateInscripcion({ variables: { id, estado } });
 
         navigate('/inscripciones');
     };
 
     return (
         <>
-        {error && <h1>error</h1>}
-        {loading && <h1>datos</h1>}
-        {data && <div>
-            <h2 className="mb-4">Editar Inscripcion</h2>
-            <hr />
-            <div className="card col-md-8 mx-auto">
-                <div className="card-body"></div>
-                <form onSubmit={handleSubmit(handleUpdate)}>
-                    <div className="mb-3">
-                        <label htmlFor="producto" className="form-label">Proyecto:</label>
-                        <input type="text" className="form-control" defaultValue={data.inscripcionById.proyecto_id} {...register("proyecto_id", { required: true })} />
-                    </div>
+            {error && <h1>error</h1>}
+            {loading && <h1>datos</h1>}
+            {data && <div>
+                <h2 className="mb-4">Editar Inscripción</h2>
+                <hr />
+                <div className="card col-md-8 mx-auto">
+                    <div className="card-body"></div>
+                    <form onSubmit={handleSubmit(handleUpdate)}>
 
-                    <div className="mb-3">
-                        <label htmlFor="valor" className="form-label">Usuario:</label>
-                        <input type="text" className="form-control"defaultValue={data.inscripcionById.usuarios_id} {...register("usuario_id", { required: true })} />
-                    </div>
+                        <div className="mb-3">
+                            <input {...register("estado", { required: true })} type="radio" id="true" value="Aceptada" />
+                            <label for="true">Aceptada</label><br></br>
+                            <input {...register("estado", { required: true })} type="radio" id="false" value="Rechazada" />
+                            <label for="false">Rechazada</label><br></br>
+                        </div>
 
-                    <div className="mb-3">
-                        <label htmlFor="valor" className="form-label">Estado:</label>
-                        <input type="text" className="form-control" defaultValue={data.inscripcionById.estado} {...register("estado", { required: true })} />
-                    </div>
+                        <br />
+                        <button type="submit" className="btn btn-success">Confirmar cambios</button>
+                        <br /> <br />
 
-                    <div className="mb-3">
-                        <label htmlFor="valor" className="form-label">Fecha Ingreso:</label>
-                        <input type="text" className="form-control" value={data.inscripcionById.fechaIngreso} {...register("fechaIngreso", { required: true })} />
-                    </div>
+                        <a href="/inscripciones">
+                            <button type="button" className="btn btn-danger">Cancelar</button>
+                        </a>
 
-                    <div className="mb-3">
-                        <label htmlFor="valor" className="form-label">Fecha Egreso:</label>
-                        <input type="text" className="form-control" value={data.inscripcionById.fechaEgreso} {...register("fechaEgreso", { required: true })} />
-                    </div>
-                 
-                 
-                    <br />
-                    <button type="submit" className="btn btn-success">Actualizar Estado</button>
-                    <br /> <br />
-
-                    
-
-                </form>
-            </div>
-        </div>}
-    </> 
+                    </form>
+                </div>
+            </div>}
+        </>
     )
 }
 

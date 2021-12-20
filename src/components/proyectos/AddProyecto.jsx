@@ -1,6 +1,5 @@
 import { useMutation } from '@apollo/client';
 import React from 'react';
-// import swal from 'sweetalert';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import SET_PROYECTO from '../../apollo/gql/setProyecto';
@@ -30,11 +29,6 @@ const AddProyecto = () => {
         navigate('/proyectos');
 
     };
-
-    // const handleSubmit = async (event) => {
-    //     event.preventDefault();
-
-    // }
 
     return (
         <>

@@ -7,10 +7,6 @@ const Inscripcion = () => {
 
     const { loading, data, error } = useQuery(GET_INSCRIPCIONES);
 
-    const handleDelete = (id) => {
-        console.log('delete');
-    }
-
     console.log(data);
     
     return (
@@ -27,7 +23,7 @@ const Inscripcion = () => {
                         <tr>
                             <th scope="col">Nº</th>
                             <th scope="col">Proyecto</th>
-                            <th scope="col">Usuario</th>
+                            <th scope="col">Estudiante</th>
                             <th scope="col">Estado</th>
                             <th scope="col">Fecha Ingreso</th>
                             <th scope="col">Fecha Egreso</th>
@@ -38,8 +34,8 @@ const Inscripcion = () => {
                             data.Inscripciones.map((inscripcion, index) => (
                                 <tr key={inscripcion.id}>
                                     <th scope="row">{index + 1}</th>
-                                    <td>{inscripcion.proyecto_id}</td>
-                                    <td>{inscripcion.usuario_id}</td>
+                                    <td>{inscripcion.proyecto_id.nombre}</td>
+                                    <td>{inscripcion.usuario_id.nombre}</td>
                                     <td>{inscripcion.estado}</td>
                                     <td>{inscripcion.fechaIngreso}</td>
                                     <td>{inscripcion.fechaEgreso}</td>
@@ -47,7 +43,6 @@ const Inscripcion = () => {
                                         <NavLink className="btn btn-primary mr" to={`/updateInscripciones/${inscripcion.id}`}>
                                             Editar
                                         </NavLink>
-                                        <button type="button" className="btn btn btn-danger mr-3" data="data de pruebas" onClick={() => handleDelete(inscripcion.id)}>Eliminar</button>
                                     </td>
                                 </tr>
                             ))

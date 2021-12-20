@@ -2,16 +2,15 @@ import { useMutation } from '@apollo/client';
 import React from 'react';
 // import swal from 'sweetalert';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import SET_INSCRIPCION from '../../apollo/gql/setInscripcion';
 import useAuth from '../../hooks/useAuth';
 
 const AddInscripcion = () => {
 
-    const auth = useAuth();
+    const { id } = useParams();
 
-    // console.log(auth.user.id);
-    // console.log(auth);
+    const auth = useAuth();
 
     const navigate = useNavigate();
 
@@ -23,11 +22,11 @@ const AddInscripcion = () => {
         console.log('crear');
         console.log(data);
 
-        const { proyecto_id, usuario_id, estado, fechaIngreso } = data;
+        const { proyecto_id, usuario_id } = data;
 
-        crearInscripcion({ variables: { proyecto_id, usuario_id:auth.user.id, estado, fechaIngreso} });
+        crearInscripcion({ variables: { proyecto_id: id, usuario_id: auth.user.id } });
 
-        navigate('/inscripciones');
+        navigate('/proyectos');
 
     };
 
@@ -38,33 +37,14 @@ const AddInscripcion = () => {
 
     return (
         <>
-            <h2 className="mb-4">Agregar Inscripcion</h2>
+            <h2 className="mb-4">Agregar Inscripción</h2>
             <hr />
             <div className="card col-md-8 mx-auto">
                 <div className="card-body"></div>
                 <form onSubmit={handleSubmit(handleCreate)}>
-                    <div className="mb-3">
-                        <label htmlFor="producto" className="form-label">Nombre del proyecto:</label>
-                        <input type="text" className="form-control" {...register("proyecto_id", { required: true })} />
-                    </div>
-
-                    <div className="mb-3">
-                        <label htmlFor="valor" className="form-label">Nombre del proyecto:</label>
-                        <input type="text" className="form-control" {...register("usuario_id", { required: true })} />
-                    </div>
-
-                    <div className="mb-3">
-                        <label htmlFor="valor" className="form-label">Estado:</label>
-                        <input type="text" className="form-control" {...register("estado", { required: true })} />
-                    </div>
-
-                    <div className="mb-3">
-                        <label htmlFor="valor" className="form-label">Fecha de Ingreso:</label>
-                        <input type="text" className="form-control" {...register("fechaIngreso", { required: true })} />
-                    </div>
 
                     <br />
-                    <button type="submit" className="btn btn-success">Crear Inscripcion</button>
+                    <button type="submit" className="btn btn-success">Confirmar solicitud de inscripción</button>
                     <br /> <br />
 
                     <a href="/inscripciones">

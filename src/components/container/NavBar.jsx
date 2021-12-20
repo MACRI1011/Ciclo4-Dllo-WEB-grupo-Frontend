@@ -11,6 +11,7 @@ const Navbar = () => {
 
     const handleLogout = () => {
         console.log('logout');
+        auth.logout();
         navigate('/login', {
             replace: true
         });
@@ -19,7 +20,7 @@ const Navbar = () => {
     const perfil = auth.user.rol;
     const user = localStorage.getItem("user")
     // const user = JSON.parse(localStorage.getItem('user'));
-   const data=  JSON.parse(user);
+//    const data=  JSON.parse(user);
 
     return (
         <nav className='navbar navbar-expand-sm navbar-dark bg-success'>
@@ -105,21 +106,20 @@ const Navbar = () => {
                     </div>
                 </div>
             }
-            {
-                <NavLink
-                className={({ isActive }) => 'nav-item nav-link ' + (isActive ? 'active' : '')}
-                to={`/updateUser/${data.id}`}
-                >
-                Actualizar Perfil
-            </NavLink>
 
-            }
             <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end">
                 <ul className="navbar-nav ml-auto">
 
                     <span className='nav-item nav-link text-info'>
-                    auth.user.nombre
+                    {(`${auth.user.nombre} | ${auth.user.rol}`)}
                     </span>
+
+                    <NavLink
+                className={({ isActive }) => 'nav-item nav-link ' + (isActive ? 'active' : '')}
+                to={`/updateUser/${auth.user.id}`}
+                >
+                Actualizar Perfil
+            </NavLink>
 
                     <button
                         className="nav-item nav-link btn"

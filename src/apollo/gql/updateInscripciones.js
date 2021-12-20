@@ -1,20 +1,14 @@
 import { gql } from '@apollo/client';
 
 const UPDATE_INSCRIPCION = gql`
-mutation updateInscripcion($id: ID!, $proyecto_id: String, $usuario_id: String,$estado: String,$fechaIngreso: String,$fechaEgreso: String ){
-    actualizarInscripcion(
+mutation updateInscripcion($id: ID!, $estado: String! ){
+    actualizarEstadoInscripcion(
         id:$id
-        proyecto_id:$proyecto_id
-        usuario_id:$usuario_id
         estado:$estado
-        fechaIngreso:$fechaIngreso
-        fechaEgreso:$fechaEgreso
-        
     ){  
         id
-        proyecto_id
-        usuario_id
         estado
+        fechaEgreso
         fechaIngreso
     }
 }

@@ -20,7 +20,7 @@ const Login = () => {
             console.log('data', data);
 
             auth.setToken(data.login.token);
-            auth.setUser({ id: data.login.id, rol: data.login.rol });
+            auth.setUser({ id: data.login.id, rol: data.login.rol, nombre: data.login.nombre });
 
             navigate('/proyectos', {
                 replace: true
@@ -58,18 +58,6 @@ const Login = () => {
                         {...register("password", { required: true })}
                     />
                     </div>
-                            <div class="row">
-                                <div class="col">
-                                    <label for="formGroupExampleInput" class="form-label">Rol</label>
-                                    <select class="form-select" aria-label="Default select">
-                                        <option selected>Seleccione una opción</option>
-                                        <option value="1">Administrador</option>
-                                        <option value="2">lider</option>
-                                        <option value="3">Estudiante</option>
-                                         
-                                      </select>
-                                </div>
-                </div>
                 <div class="mb-3 form-check">
                      
                     <label><input type="checkbox"/> Recuerdame</label>

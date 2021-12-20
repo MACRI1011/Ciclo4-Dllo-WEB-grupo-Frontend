@@ -31,11 +31,11 @@ const ContentRoutes = () => {
                 <Route path="/updateUser/:id" element={<UpdateUser />} />
                 <Route path="/user" element={<User />} />
                 <Route path="/inscripciones" element={<Inscripcion />} />
-                <Route path="/updateInscripciones" element={<UpdateInscripcion />} />
-                <Route path="/addInscripcion" element={<AddInscripcion />} />
+                <Route path="/updateInscripciones/:id" element={<UpdateInscripcion />} />
+                <Route path="/addInscripcion/:id" element={<AddInscripcion />} />
                 
                 <Route path="/" element={<Usuario />} />
-                <Route path="/registro" element={<Registro/>} />
+                {/* <Route path="/registro" element={<Registro/>} /> */}
             </Routes>
 
         </>
