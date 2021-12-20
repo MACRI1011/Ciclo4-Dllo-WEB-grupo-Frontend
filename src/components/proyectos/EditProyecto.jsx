@@ -1,15 +1,16 @@
 import { useMutation, useQuery } from '@apollo/client';
 import React from 'react';
-// import swal from 'sweetalert';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import EDIT_PROYECTO from '../../apollo/gql/editProyecto';
 import GET_PROYECTOS_BY_ID from '../../apollo/gql/getProyectoById';
-
+import useAuth from '../../hooks/useAuth';
 
 const EditProyecto = () => {
 
     const { id } = useParams();
+
+    const auth = useAuth();
 
     const navigate = useNavigate();
 
@@ -27,9 +28,17 @@ const EditProyecto = () => {
         console.log('crear');
         console.log(data);
 
-        const { nombre, objetivosG, objetivosE, presupuesto } = args;
+        const parseBoolean = (value) => {
+            if (value && typeof value === "string") {
+                if (value.toLowerCase() === "true") return true;
+                if (value.toLowerCase() === "false") return false;
+            }
+            return value;
+        };
 
-        actualizarProyecto({ variables: { id, nombre, objetivosG, objetivosE, presupuesto: parseInt(presupuesto, 10)} });
+        const { nombre, objetivosG, objetivosE, presupuesto, estado, fase } = args;
+
+        actualizarProyecto({ variables: { id, nombre, objetivosG, objetivosE, presupuesto: parseInt(presupuesto, 10), estado: parseBoolean(estado), fase } });
 
         navigate('/proyectos');
     };
@@ -67,6 +76,20 @@ const EditProyecto = () => {
                         <div className="mb-3">
                             <label htmlFor="valor" className="form-label">Presupuesto:</label>
                             <input type="number" className="form-control" placeholder="$" defaultValue={data.proyectoById.presupuesto} {...register("presupuesto", { required: true })} />
+                        </div>
+
+                        <div className="mb-3">
+                            <input disabled={auth.user.rol === "Administrador" ? "" : "disabled"} {...register("estado", { required: false })} type="radio" id="true" value="true" />
+                            <label for="true">Activo</label><br></br>
+                            <input disabled={auth.user.rol === "Administrador" ? "" : "disabled"} {...register("estado", { required: false })} type="radio" id="false" value="false" />
+                            <label for="false">Inactivo</label><br></br>
+                        </div>
+
+                        <div>
+                            <select {...register("fase", { required: false })}>
+                                <option value="En desarrollo">En desarrollo</option>
+                                <option value="Terminado">Terminado</option>
+                            </select>
                         </div>
 
                         <br />
