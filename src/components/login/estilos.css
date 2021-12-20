@@ -1,0 +1,64 @@
+.form-label{
+    margin-left: 0cm;
+    margin-top:0.5cm;
+    color:white
+    
+}
+.form-control{
+    
+    width: 8.5cm;
+}
+.form-check{
+
+    color:white;
+    margin-left: 0cm;
+}
+
+.login {
+    overflow: hidden;
+    background-image: url('https://wc.wallpaperuse.com/wallp/8-83446_s.jpg');
+    height: 100vh;
+}
+.mb-3{
+    margin-left: 13cm;
+}
+#boton1{
+    margin-left: 13cm;
+}
+
+#vinculo{
+    color:white;
+}
+.proyectos{
+    overflow: hidden;
+    background-image: url('https://wc.wallpaperuse.com/wallp/8-83446_s.jpg');
+    height: 100vh;
+
+}
+.table-hover{
+    color:white;
+}
+.gestionProyectos{
+    color:white;
+}
+#tabla1{
+    color:white
+}
+.estudiante{
+    overflow: hidden;
+    background-image: url('https://wc.wallpaperuse.com/wallp/8-83446_s.jpg');
+    height: 100vh;
+
+}
+.avances{
+    overflow: hidden;
+    background-image: url('https://wc.wallpaperuse.com/wallp/8-83446_s.jpg');
+    height: 100vh;
+
+}
+#avance{
+    color: white;
+}
+#proyectoId{
+    color: white;
+}

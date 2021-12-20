@@ -37,10 +37,10 @@ const Avances = () => {
       {error && <h1>error</h1>}
       {loading && <h1>datos</h1>}
       {data && (
-        <div>
-          <h2 className="mb-4">Avances del proyecto</h2>
+        <div className="avances">
+          <h2 className="mb-4" id='avance'>Avances del proyecto</h2>
           <br />
-          <label for="#IDPROYECTO"> ID del proyecto</label>
+          <label for="#IDPROYECTO" id="proyectoId"> ID del proyecto</label>
           <Form.Control type="text" placeholder={id} readOnly id="IDPROYECTO" />
           <br />
           <section className="row">

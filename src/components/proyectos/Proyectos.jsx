@@ -19,11 +19,12 @@ const Proyectos = () => {
             {
                 (rol === 'Lider' || rol === 'Administrador') &&
                 <div>
+                    <div className="proyectos">
                     <div>
-                        <h1>Gestión de Proyectos</h1>
+                        <h1 className="gestionProyectos">Gestión de Proyectos</h1>
                     </div>
                     <a href="/addProyecto">
-                        <button type="button" class="btn btn-success">
+                        <button type="button" class="btn btn-success" >
                             Agregar Proyecto
                         </button>
                     </a>
@@ -75,11 +76,11 @@ const Proyectos = () => {
                                         <td>{proyecto.lider.cc}</td>
                                         <td>{proyecto.estado ? "Activo" : "Inactivo"}</td>
                                         <td>{proyecto.fase}</td>
-                                        <td> <a href={`/avances/${proyecto.id}`}>Ver Avances</a></td>
+                                        <td> <a id='vinculo'href={`/avances/${proyecto.id}`}>Ver Avances</a></td>
 
                                         <td>
                                             <NavLink
-                                                className="btn btn-primary mr"
+                                                className="btn btn-success mr"
                                                 to={`/editProyecto/${proyecto.id}`}
                                             >
                                                 Editar
@@ -91,14 +92,16 @@ const Proyectos = () => {
                             </tbody>
                         </table>
                     )}
+                    </div>
                 </div>
             }
 
             {
                 rol === 'Estudiante' &&
-                <div>
-                    <div>
-                        <h1>Gestión de Proyectos</h1>
+                <div >
+                    <div className="estudiante">
+                    <div >
+                        <h1 className="gestionProyectos">Gestión de Proyectos</h1>
                     </div>
                     <a href="/addProyecto">
                         <button type="button" class="btn btn-success">
@@ -153,11 +156,11 @@ const Proyectos = () => {
                                         <td>{proyecto.lider.cc}</td>
                                         <td>{proyecto.estado ? "Activo" : "Inactivo"}</td>
                                         <td>{proyecto.fase}</td>
-                                        <td> <a href={`/avances/${proyecto.id}`}>Ver Avances</a></td>
+                                        <td> <a id='vinculo' href={`/avances/${proyecto.id}`}>Ver Avances</a></td>
 
                                         <td>
                                             <NavLink
-                                                className="btn btn-primary mr"
+                                                className="btn btn-success mr"
                                                 to={`/addInscripcion/${proyecto.id}`}
                                             >
                                                 Inscribirme
@@ -168,6 +171,7 @@ const Proyectos = () => {
                             </tbody>
                         </table>
                     )}
+                    </div>
                 </div>
             }
         </>

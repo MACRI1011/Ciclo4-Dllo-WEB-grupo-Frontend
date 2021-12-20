@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import LOGIN_USUARIO from '../../apollo/gql/loginUsuario';
 import useAuth from '../../hooks/useAuth';
+import './estilos.css';
 
 const Login = () => {
 
@@ -37,19 +38,20 @@ const Login = () => {
 
     return (
         <React.Fragment>
+            <div className='login'>
             <form onSubmit={handleSubmit(handleLogin)}>
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">email</label>
+                    <label for="exampleInputEmail1" class="form-label">Email:</label>
                     <input
                         type="text"
                         className="form-control"
-                        placeholder="email"
+                        placeholder="Email"
                         name="email"
                         {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
                     />
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+                    <label for="exampleInputPassword1" class="form-label">Contraseña:</label>
                     <input
                         type="password"
                         className="form-control"
@@ -62,14 +64,15 @@ const Login = () => {
                      
                     <label><input type="checkbox"/> Recuerdame</label>
                 </div>
-                <button type="submit" class="btn btn-primary">Ingresar</button>
+                <button type="submit" class="btn btn-success" id="boton1">Ingresar</button>{' '}
                                 
                 <a href="/registro">
-                        <button type="button" className="btn btn-danger">No tienes cuenta? Registrate!!</button>
+                        <button type="button" className="btn btn-secondary">No tienes cuenta? Registrate!!</button>
                     </a>
                     
 
             </form>
+            </div>
         </React.Fragment>
     )
 }

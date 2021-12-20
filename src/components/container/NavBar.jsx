@@ -23,7 +23,7 @@ const Navbar = () => {
 //    const data=  JSON.parse(user);
 
     return (
-        <nav className='navbar navbar-expand-sm navbar-dark bg-success'>
+        <nav className='navbar navbar-expand-sm navbar-dark bg-dark'>
             <Link
                 className='navbar-brand'
                 to="/"
