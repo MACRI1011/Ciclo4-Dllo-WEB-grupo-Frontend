@@ -57,15 +57,29 @@ const Login = () => {
                         name="password"
                         {...register("password", { required: true })}
                     />
+                    </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="formGroupExampleInput" class="form-label">Rol</label>
+                                    <select class="form-select" aria-label="Default select">
+                                        <option selected>Seleccione una opción</option>
+                                        <option value="1">Administrador</option>
+                                        <option value="2">lider</option>
+                                        <option value="3">Estudiante</option>
+                                         
+                                      </select>
+                                </div>
                 </div>
                 <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+                     
+                    <label><input type="checkbox"/> Recuerdame</label>
                 </div>
                 <button type="submit" class="btn btn-primary">Ingresar</button>
                                 
-                <a href="/registrarse">
+                <a href="/registro">
                         <button type="button" className="btn btn-danger">No tienes cuenta? Registrate!!</button>
                     </a>
+                    
 
             </form>
         </React.Fragment>
