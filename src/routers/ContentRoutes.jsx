@@ -5,7 +5,7 @@ import {
     Route
 } from "react-router-dom";
 import NavBar from '../components/container/NavBar';
-import Registro from '../components/login/Registro';
+// import Registro from '../components/login/Registro';
 import AddProyecto from '../components/proyectos/AddProyecto';
 import Avances from "../components/proyectos/Avances";
 import EditProyecto from '../components/proyectos/EditProyecto';

@@ -46,82 +46,86 @@ const Avances = () => {
           <section className="row">
             <div className="col">
               {data.listaAvances?.map((avance, index) => (
-                <Card border="success">
-                  <Card.Header>Avance # {index + 1}</Card.Header>
-                  <Card.Body>
-                    <Card.Title>
-                      Realizado por: {avance.usuario_id.nombre}
-                    </Card.Title>
-                    <Card.Text>
-                      Fecha: {avance.fechaAvance}
-                      <br />
-                      Avance : {avance.avanceEstudiante}
-                    </Card.Text>
-                    <ListGroup as="ol" numbered>
-                      {avance.observaciones.map((observacion, index) => (
-                        <ListGroup.Item
-                          as="li"
-                          className="d-flex justify-content-between align-items-start"
-                        >
-                          <div className="ms-2 me-auto">
-                            <div className="fw-bold">Observación</div>
-                            {observacion.observacion}
-                          </div>
-                          <Badge variant="primary" pill>
-                            {observacion.fechaObservacion}
-                          </Badge>
-                        </ListGroup.Item>
-                      ))}
-                    </ListGroup>
-                    {user.rol === "Lider" && (
-                      <>
-                        <Button variant="primary">Agregar Observación</Button>
-                        <Modal show={show} onHide={handleClose}>
-                          <Modal.Header closeButton>
-                            <Modal.Title>
-                              Ingresa la información del avance
-                            </Modal.Title>
-                          </Modal.Header>
-                          <Modal.Body>
-                            <Form>
-                              <Form.Group
-                                className="mb-3"
-                                controlId="exampleForm.ControlTextarea1"
+                <>
+                  <Card border="success">
+                    <Card.Header>Avance # {index + 1}</Card.Header>
+                    <Card.Body>
+                      <Card.Title>
+                        Realizado por: {avance.usuario_id.nombre}
+                      </Card.Title>
+                      <Card.Text>
+                        Fecha: {avance.fechaAvance}
+                        <br />
+                        Avance : {avance.avanceEstudiante}
+                      </Card.Text>
+                      <ListGroup as="ol" numbered>
+                        {avance.observaciones.map((observacion, index) => (
+                          <ListGroup.Item
+                            as="li"
+                            className="d-flex justify-content-between align-items-start"
+                          >
+                            <div className="ms-2 me-auto">
+                              <div className="fw-bold">Observación</div>
+                              {observacion.observacion}
+                            </div>
+                            <Badge variant="primary" pill>
+                              {observacion.fechaObservacion}
+                            </Badge>
+                          </ListGroup.Item>
+                        ))}
+                      </ListGroup>
+                      {user.rol === "Lider" && (
+                        <>
+                          <Button variant="primary">Agregar Observación</Button>
+                          <Modal show={show} onHide={handleClose}>
+                            <Modal.Header closeButton>
+                              <Modal.Title>
+                                Ingresa la información del avance
+                              </Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                              <Form>
+                                <Form.Group
+                                  className="mb-3"
+                                  controlId="exampleForm.ControlTextarea1"
+                                >
+                                  <Form.Label>Texto del avance</Form.Label>
+                                  <Form.Control
+                                    as="textarea"
+                                    rows={3}
+                                    value={avance}
+                                    onChange={(e) => setAvance(e.target.value)}
+                                  />
+                                </Form.Group>
+                              </Form>
+                            </Modal.Body>
+                            <Modal.Footer>
+                              <Button variant="secondary" onClick={handleClose}>
+                                Close
+                              </Button>
+                              <Button
+                                variant="success"
+                                onClick={handleAgregarAvance}
                               >
-                                <Form.Label>Texto del avance</Form.Label>
-                                <Form.Control
-                                  as="textarea"
-                                  rows={3}
-                                  value={avance}
-                                  onChange={(e) => setAvance(e.target.value)}
-                                />
-                              </Form.Group>
-                            </Form>
-                          </Modal.Body>
-                          <Modal.Footer>
-                            <Button variant="secondary" onClick={handleClose}>
-                              Close
-                            </Button>
-                            <Button
-                              variant="success"
-                              onClick={handleAgregarAvance}
-                            >
-                              Save Changes
-                            </Button>
-                          </Modal.Footer>
-                        </Modal>
-                      </>
-                    )}
+                                Save Changes
+                              </Button>
+                            </Modal.Footer>
+                          </Modal>
+                        </>
+                      )}
 
-                    {user.rol === "Estudiante" && (
-                      <Button variant="primary"> Actualizar Avance</Button>
-                    )}
-                  </Card.Body>
-                </Card>
+                      {user.rol === "Estudiante" && (
+                        <Button variant="primary"> Actualizar Avance</Button>
+                      )}
+                    </Card.Body>
+                  </Card>
+                  <br />
+                </>
               ))}
             </div>
+           
           </section>
-          <br />
+        
           <section className="row">
             <div
               className="col-md-6
