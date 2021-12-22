@@ -43,11 +43,6 @@ const EditProyecto = () => {
         navigate('/proyectos');
     };
 
-    // const handleSubmit = async (event) => {
-    //     event.preventDefault();
-
-    // }
-
     return (
         <>
             {error && <h1>error</h1>}
@@ -60,22 +55,22 @@ const EditProyecto = () => {
                     <form onSubmit={handleSubmit(handleUpdate)}>
                         <div className="mb-3">
                             <label htmlFor="producto" className="form-label">Nombre del proyecto:</label>
-                            <input type="text" className="form-control" defaultValue={data.proyectoById.nombre} {...register("nombre", { required: true })} />
+                            <input type="text" disabled={auth.user.rol === "Lider" ? "" : "disabled"} className="form-control" defaultValue={data.proyectoById.nombre} {...register("nombre", { required: false })} />
                         </div>
 
                         <div className="mb-3">
                             <label htmlFor="valor" className="form-label">Objetivos generales:</label>
-                            <input type="text" className="form-control" defaultValue={data.proyectoById.objetivosG} {...register("objetivosG", { required: true })} />
+                            <input type="text" disabled={auth.user.rol === "Lider" ? "" : "disabled"} className="form-control" defaultValue={data.proyectoById.objetivosG} {...register("objetivosG", { required: false })} />
                         </div>
 
                         <div className="mb-3">
                             <label htmlFor="valor" className="form-label">Objetivos especificos:</label>
-                            <input type="text" className="form-control" defaultValue={data.proyectoById.objetivosE} {...register("objetivosE", { required: true })} />
+                            <input type="text" disabled={auth.user.rol === "Lider" ? "" : "disabled"} className="form-control" defaultValue={data.proyectoById.objetivosE} {...register("objetivosE", { required: false })} />
                         </div>
 
                         <div className="mb-3">
                             <label htmlFor="valor" className="form-label">Presupuesto:</label>
-                            <input type="number" className="form-control" placeholder="$" defaultValue={data.proyectoById.presupuesto} {...register("presupuesto", { required: true })} />
+                            <input type="number" disabled={auth.user.rol === "Lider" ? "" : "disabled"} className="form-control" placeholder="$" defaultValue={data.proyectoById.presupuesto} {...register("presupuesto", { required: false })} />
                         </div>
 
                         <div className="mb-3">
@@ -87,6 +82,7 @@ const EditProyecto = () => {
 
                         <div>
                             <select {...register("fase", { required: false })}>
+                                <option disabled selected value>Selecciona una opcion</option>
                                 <option value="En desarrollo">En desarrollo</option>
                                 <option value="Terminado">Terminado</option>
                             </select>
