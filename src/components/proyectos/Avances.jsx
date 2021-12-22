@@ -2,7 +2,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { set, useForm } from "react-hook-form";
 import React, { useState } from "react";
 import { Badge, Button, Card, Form, ListGroup, Modal } from "react-bootstrap";
-import { useNavigate, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import AGREGAR_AVANCE from "../../apollo/gql/agregarAvance";
 import GET_AVANCES from "../../apollo/gql/getAvances";
 import AGREGAR_OBSERVACION from "../../apollo/gql/agregarObservacion";
@@ -14,7 +14,7 @@ const Avances = () => {
   const handleClose = () => setModalId("");
   const handleShow = () => setShow(true);
   const [modalId,setModalId]=useState("");
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(sessionStorage.getItem("user"));
   const { id } = useParams();
 
   
@@ -26,7 +26,7 @@ const Avances = () => {
       },
     });
     handleClose();
-    setObservacion("");
+    
   };
 
   function handleAgregarObservacion (idAvance) {
@@ -37,9 +37,11 @@ const Avances = () => {
       variables: {
         idAvance: idAvance,
         observacion: observacion,
+        idProyecto: id
       },
     });
     handleClose();
+    setObservacion("");
   };
 
   const { loading, data, error } = useQuery(GET_AVANCES, {
@@ -88,7 +90,7 @@ const Avances = () => {
                               {observacion.observacion}
                             </div>
                             <Badge variant="primary" pill>
-                              {observacion.fechaObservacion}
+                             Fecha: {observacion.fechaObservacion}
                             </Badge>
                           </ListGroup.Item>
                         ))}
