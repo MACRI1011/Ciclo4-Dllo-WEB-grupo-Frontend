@@ -18,7 +18,7 @@ const Inscripcion = () => {
             {error && <p>Se ha producido un error</p>}
             {
                 data &&
-                <table className="table table-hover">
+                <table className="table align-middle text-center table-bordered border-dark table-striped caption-top table-hover">
                     <thead>
                         <tr>
                             <th scope="col">Nº</th>

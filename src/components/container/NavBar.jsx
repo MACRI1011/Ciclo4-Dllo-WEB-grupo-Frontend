@@ -18,12 +18,12 @@ const Navbar = () => {
     }
 
     const perfil = auth.user.rol;
-    const user = localStorage.getItem("user")
-    // const user = JSON.parse(localStorage.getItem('user'));
+    const user = sessionStorage.getItem("user")
+    // const user = JSON.parse(sessionStorage.getItem('user'));
 //    const data=  JSON.parse(user);
 
     return (
-        <nav className='navbar navbar-expand-sm navbar-dark bg-success'>
+        <nav className='navbar text-center navbar-expand-sm navbar-dark bg-success nav-pills'>
             <Link
                 className='navbar-brand'
                 to="/"
@@ -89,19 +89,12 @@ const Navbar = () => {
 
                         <NavDropdown title="Gestión de Proyectos" id="basic-nav-dropdown">
                             <NavDropdown.Item className={({ isActive }) => 'nav-item nav-link ' + (isActive ? 'active' : '')}
-                            to="/proyectos">Ver proyectos</NavDropdown.Item>
+                            href="/proyectos">Ver tods los proyectos</NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item className={({ isActive }) => 'nav-item nav-link ' + (isActive ? 'active' : '')}
-                            to="/proyectos">Mis proyectos</NavDropdown.Item>
+                            href="/proyectos">Mis proyectos</NavDropdown.Item>
                             <NavDropdown.Divider />
                         </NavDropdown>
-
-                        <NavLink
-                            className={({ isActive }) => 'nav-item nav-link ' + (isActive ? 'active' : '')}
-                            to="/inscripciones"
-                        >
-                            Gestión de Inscripciones
-                        </NavLink>
 
                     </div>
                 </div>
