@@ -92,7 +92,7 @@ const Navbar = () => {
                             href="/proyectos">Ver tods los proyectos</NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item className={({ isActive }) => 'nav-item nav-link ' + (isActive ? 'active' : '')}
-                            href="/proyectos">Mis proyectos</NavDropdown.Item>
+                            href="/misProyectos">Mis proyectos</NavDropdown.Item>
                             <NavDropdown.Divider />
                         </NavDropdown>
 

@@ -47,7 +47,7 @@ const AddInscripcion = () => {
                     <button type="submit" className="btn btn-success">Confirmar solicitud de inscripción</button>
                     <br /> <br />
 
-                    <a href="/inscripciones">
+                    <a href="/proyectos">
                         <button type="button" className="btn btn-danger">Cancelar</button>
                     </a>
 

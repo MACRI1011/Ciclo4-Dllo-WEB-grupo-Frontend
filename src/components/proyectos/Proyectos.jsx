@@ -100,11 +100,6 @@ const Proyectos = () => {
                     <div>
                         <h1>Gestión de Proyectos</h1>
                     </div>
-                    <a href="/addProyecto">
-                        <button type="button" class="btn btn-success">
-                            Agregar Proyecto
-                        </button>
-                    </a>
                     <br /> <br />
                     {loading && <p>Cargando ...</p>}
                     {error && <p>Se ha producido un error</p>}

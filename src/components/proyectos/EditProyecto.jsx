@@ -82,7 +82,7 @@ const EditProyecto = () => {
 
                         <div>
                             <select {...register("fase", { required: false })}>
-                                {/* <option placeholder='Seleccione una fase'></option> */}
+                                <option disabled selected value>Selecciona una opcion</option>
                                 <option value="En desarrollo">En desarrollo</option>
                                 <option value="Terminado">Terminado</option>
                             </select>

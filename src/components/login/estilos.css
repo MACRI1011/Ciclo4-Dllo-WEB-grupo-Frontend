@@ -1,0 +1,14 @@
+.login {
+    overflow: hidden;
+    background-image: url('https://wc.wallpaperuse.com/wallp/8-83446_s.jpg');
+    height: 100vh;
+padding: 20%;
+padding-top: 5%;
+    color:white
+    
+}
+
+.titulo{
+    background-color: black;
+    text-align: center;
+}
