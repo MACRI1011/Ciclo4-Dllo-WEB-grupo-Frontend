@@ -1,8 +1,8 @@
 import React from 'react'
 
 const user = () => {
-    const user = localStorage.getItem("user")
-    // const user = JSON.parse(localStorage.getItem('user'));
+    const user = sessionStorage.getItem("user")
+    // const user = JSON.parse(sessionStorage.getItem('user'));
    const data=  JSON.parse(user);
     return (
         <div>

@@ -11,7 +11,7 @@ const Avances = () => {
   const [avance, setAvance] = useState("");
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(sessionStorage.getItem("user"));
   const { id } = useParams();
 
   const handleAgregarAvance = () => {
@@ -107,7 +107,7 @@ const Avances = () => {
                                 variant="success"
                                 onClick={handleAgregarAvance}
                               >
-                                Save Changes
+                                Guardar cambios
                               </Button>
                             </Modal.Footer>
                           </Modal>
@@ -123,9 +123,9 @@ const Avances = () => {
                 </>
               ))}
             </div>
-           
+
           </section>
-        
+
           <section className="row">
             <div
               className="col-md-6
@@ -134,6 +134,10 @@ const Avances = () => {
               <Button variant="success" onClick={handleShow}>
                 + Agregar Avances
               </Button>
+
+              <a href="/proyectos">
+                <button type="button" className="btn btn-danger">Cancelar</button>
+              </a>
 
               <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
@@ -160,7 +164,7 @@ const Avances = () => {
                     Close
                   </Button>
                   <Button variant="success" onClick={handleAgregarAvance}>
-                    Save Changes
+                    Guardar cambios
                   </Button>
                 </Modal.Footer>
               </Modal>

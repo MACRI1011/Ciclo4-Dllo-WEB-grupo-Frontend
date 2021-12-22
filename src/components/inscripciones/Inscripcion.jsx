@@ -18,7 +18,7 @@ const Inscripcion = () => {
             {error && <p>Se ha producido un error</p>}
             {
                 data &&
-                <table className="table table-hover">
+                <table className="table align-middle text-center table-bordered border-dark table-striped caption-top table-hover">
                     <thead>
                         <tr>
                             <th scope="col">Nº</th>
@@ -27,6 +27,7 @@ const Inscripcion = () => {
                             <th scope="col">Estado</th>
                             <th scope="col">Fecha Ingreso</th>
                             <th scope="col">Fecha Egreso</th>
+                            <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,7 +42,7 @@ const Inscripcion = () => {
                                     <td>{inscripcion.fechaEgreso}</td>
                                     <td>
                                         <NavLink className="btn btn-primary mr" to={`/updateInscripciones/${inscripcion.id}`}>
-                                            Editar
+                                            Cambiar estado
                                         </NavLink>
                                     </td>
                                 </tr>

@@ -8,20 +8,20 @@ export const AuthContext = createContext();
 const AuthProvider = ({children}) => {
 
     const [token, setToken] = useState(
-        localStorage.getItem("token") || null
+        sessionStorage.getItem("token") || null
     );
 
     const [user, setUser] = useState(
-        JSON.parse(localStorage.getItem("user")) || null
+        JSON.parse(sessionStorage.getItem("user")) || null
     );
 
     useEffect(() => {
         try {
-            localStorage.setItem("token", token);
-            localStorage.setItem("user", JSON.stringify(user));
+            sessionStorage.setItem("token", token);
+            sessionStorage.setItem("user", JSON.stringify(user));
         } catch (error) {
-            localStorage.removeItem("token");
-            localStorage.removeItem("user");
+            sessionStorage.removeItem("token");
+            sessionStorage.removeItem("user");
         }
     }, [user, token]);
 
@@ -37,8 +37,8 @@ const AuthProvider = ({children}) => {
         logout() {
             setToken(null);
             setUser(null);
-            localStorage.removeItem("token");
-            localStorage.removeItem("user");
+            sessionStorage.removeItem("token");
+            sessionStorage.removeItem("user");
         },
         isLogged() {
             return !!user;

@@ -22,7 +22,7 @@ const Usuario = () => {
             {error && <p>Se ha producido un error</p>}
             {
                 data &&
-                <table className="table table-hover">
+                <table className="table align-middle text-center table-bordered border-dark table-striped caption-top table-hover">
                     <thead>
                         <tr>
                             <th scope="col">Nº</th>
@@ -46,9 +46,8 @@ const Usuario = () => {
                                     <td>{usuario.estado}</td>
                                     <td>
                                         <NavLink className="btn btn-primary mr" to={`/updateEstadoUser/${usuario.id}`}>
-                                            Editar
+                                            Cambiar estado
                                         </NavLink>
-                                        <button type="button" className="btn btn btn-danger mr-3" data="data de pruebas" onClick={() => handleDelete(usuario.id)}>Eliminar</button>
                                     </td>
                                 </tr>
                             ))
@@ -58,8 +57,7 @@ const Usuario = () => {
             }
 
         </>
-
-
+        
     )
 }
 

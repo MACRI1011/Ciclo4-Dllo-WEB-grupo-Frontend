@@ -31,7 +31,7 @@ const Proyectos = () => {
                     {loading && <p>Cargando ...</p>}
                     {error && <p>Se ha producido un error</p>}
                     {data && (
-                        <table className="table table-hover">
+                        <table className="table align-middle text-center table-bordered border-dark table-striped caption-top table-hover">
                             <thead>
                                 <tr>
                                     <th scope="col">Nº</th>
@@ -100,16 +100,11 @@ const Proyectos = () => {
                     <div>
                         <h1>Gestión de Proyectos</h1>
                     </div>
-                    <a href="/addProyecto">
-                        <button type="button" class="btn btn-success">
-                            Agregar Proyecto
-                        </button>
-                    </a>
                     <br /> <br />
                     {loading && <p>Cargando ...</p>}
                     {error && <p>Se ha producido un error</p>}
                     {data && (
-                        <table className="table table-hover">
+                        <table className="table align-middle text-center table-bordered border-dark table-striped caption-top table-hover">
                             <thead>
                                 <tr>
                                     <th scope="col">Nº</th>

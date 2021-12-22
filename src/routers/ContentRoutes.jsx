@@ -16,6 +16,7 @@ import UpdateUser from '../components/usuarios/UpdateUser';
 import User from '../components/usuarios/User';
 import Inscripcion from '../components/inscripciones/Inscripcion';
 import UpdateInscripcion from '../components/inscripciones/UpdateInscripcion';
+import MisProyectos from "../components/proyectos/MisProyectos";
 
 const ContentRoutes = () => {
   return (
@@ -24,6 +25,7 @@ const ContentRoutes = () => {
             <Routes>
                 <Route path="/usuarios" element={<Usuario />} />
                 <Route path="/proyectos" element={<Proyectos />} />
+                <Route path="/misProyectos" element={<MisProyectos />} />
                 <Route path="/addProyecto" element={<AddProyecto />} />
                 <Route path="/editProyecto/:id" element={<EditProyecto />} />
                 <Route path="/avances/:id" element={<Avances />} />
