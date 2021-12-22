@@ -1,28 +1,23 @@
 import { useMutation, useQuery } from "@apollo/client";
-import { useForm } from "react-hook-form";
 import React, { useState } from "react";
 import { Badge, Button, Card, Form, ListGroup, Modal } from "react-bootstrap";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import AGREGAR_AVANCE from "../../apollo/gql/agregarAvance";
+import ACTUALIZAR_AVANCE from "../../apollo/gql/actualizarAvance";
 import GET_AVANCES from "../../apollo/gql/getAvances";
+import AGREGAR_OBSERVACION from "../../apollo/gql/agregarObservacion";
 
 const Avances = () => {
   const [show, setShow] = useState(false);
   const [avance, setAvance] = useState("");
+  const[avanceDefault,setAvanceDefault]= useState("");
+  const [observacion, setObservacion] = useState("");
+  const handleCloseObs = () => setModalId("");
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [modalId, setModalId] = useState("");
   const user = JSON.parse(sessionStorage.getItem("user"));
   const { id } = useParams();
-
-  const handleAgregarAvance = () => {
-    agregarAvance({
-      variables: {
-        idProyecto: id,
-        avance: avance,
-      },
-    });
-    handleClose();
-  };
 
   const { loading, data, error } = useQuery(GET_AVANCES, {
     variables: {
@@ -31,6 +26,56 @@ const Avances = () => {
   });
 
   const [agregarAvance] = useMutation(AGREGAR_AVANCE);
+  const [agregarObservacion] = useMutation(AGREGAR_OBSERVACION);
+  const [actualizarAvance] = useMutation(ACTUALIZAR_AVANCE);
+
+  const handleOpenActualizar = (AvancId) =>{
+    if(data){
+      let avanceAct= data.listaAvances.find((avc=> avc.id===AvancId))
+      if(avanceAct){
+        setAvanceDefault(avanceAct.avanceEstudiante)
+      }
+    }
+  }
+  const handleActualizarAvance = (idAvce) =>{
+    console.log(avance);
+    actualizarAvance(
+      {
+        variables:{
+          idAvance: idAvce,
+          avance: avance
+        }
+      }
+    )
+    handleCloseObs()
+    setAvance("")
+  }
+  const handleAgregarAvance = () => {
+    console.log(id, avance);
+    agregarAvance({
+      variables: {
+        idProyecto: id,
+        avance: avance,
+      },
+    });
+    handleClose();
+    setAvance("")
+  };
+
+  function handleAgregarObservacion(idAvance) {
+    if (observacion === "") {
+      return alert("Observacion invalida, ingrese un valor");
+    }
+    agregarObservacion({
+      variables: {
+        idAvance: idAvance,
+        observacion: observacion,
+        idProyecto: id,
+      },
+    });
+    handleCloseObs();
+    setObservacion("");
+  }
 
   return (
     <>
@@ -69,45 +114,65 @@ const Avances = () => {
                               {observacion.observacion}
                             </div>
                             <Badge variant="primary" pill>
-                              {observacion.fechaObservacion}
+                              Fecha: {observacion.fechaObservacion}
                             </Badge>
                           </ListGroup.Item>
                         ))}
                       </ListGroup>
+
                       {user.rol === "Lider" && (
                         <>
-                          <Button variant="primary">Agregar Observación</Button>
-                          <Modal show={show} onHide={handleClose}>
+                          <Button
+                            key={index}
+                            variant="primary"
+                            onClick={() => setModalId(`modal${index}`)}
+                          >
+                            Agregar Observación
+                          </Button>
+
+                          <Modal
+                            show={modalId === `modal${index}`}
+                            onHide={handleCloseObs}
+                          >
                             <Modal.Header closeButton>
                               <Modal.Title>
-                                Ingresa la información del avance
+                                Agregar Observación 
                               </Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
                               <Form>
                                 <Form.Group
                                   className="mb-3"
-                                  controlId="exampleForm.ControlTextarea1"
+                                  controlId="exampleForm.ControlTextarea2"
                                 >
-                                  <Form.Label>Texto del avance</Form.Label>
+                                  <Form.Label>
+                                    Texto de la observación
+                                  </Form.Label>
                                   <Form.Control
                                     as="textarea"
                                     rows={3}
-                                    value={avance}
-                                    onChange={(e) => setAvance(e.target.value)}
+                                    value={observacion}
+                                    onChange={(e) =>
+                                      setObservacion(e.target.value)
+                                    }
                                   />
                                 </Form.Group>
                               </Form>
                             </Modal.Body>
                             <Modal.Footer>
-                              <Button variant="secondary" onClick={handleClose}>
+                              <Button
+                                variant="secondary"
+                                onClick={handleCloseObs}
+                              >
                                 Close
                               </Button>
                               <Button
-                                variant="success"
-                                onClick={handleAgregarAvance}
+                                variant="primary"
+                                onClick={() =>
+                                  handleAgregarObservacion(avance.id)
+                                }
                               >
-                                Guardar cambios
+                                Save Changes
                               </Button>
                             </Modal.Footer>
                           </Modal>
@@ -115,7 +180,66 @@ const Avances = () => {
                       )}
 
                       {user.rol === "Estudiante" && (
-                        <Button variant="primary"> Actualizar Avance</Button>
+                        <>
+                          <Button
+                            key={index}
+                            variant="primary"
+                            onClick={() => {
+                              setModalId(`modal${index}`)
+                              handleOpenActualizar(avance.id)
+                            }}
+                          >
+                            Actualizar Avance
+                          </Button>
+
+                          <Modal
+                            show={modalId === `modal${index}`}
+                            onHide={handleCloseObs}
+                          >
+                            <Modal.Header closeButton>
+                              <Modal.Title>
+                                Actualizar Avance
+                              </Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                              <Form>
+                                <Form.Group
+                                  className="mb-3"
+                                  controlId="exampleForm.ControlTextarea2"
+                                >
+                                  <Form.Label>
+                                    Texto del avance
+                                  </Form.Label>
+                                  <Form.Control
+                                    as="textarea"
+                                    rows={3}
+                                    // value={avance}
+                                    onChange={(e) =>
+                                      setAvance(e.target.value)
+                                    }
+                                    defaultValue={avanceDefault}
+                                  />
+                                </Form.Group>
+                              </Form>
+                            </Modal.Body>
+                            <Modal.Footer>
+                              <Button
+                                variant="secondary"
+                                onClick={handleCloseObs}
+                              >
+                                Close
+                              </Button>
+                              <Button
+                                variant="primary"
+                                onClick={() =>
+                                  handleActualizarAvance(avance.id)
+                                }
+                              >
+                                Save Changes
+                              </Button>
+                            </Modal.Footer>
+                          </Modal>
+                        </>
                       )}
                     </Card.Body>
                   </Card>
@@ -123,53 +247,49 @@ const Avances = () => {
                 </>
               ))}
             </div>
-
           </section>
-
-          <section className="row">
-            <div
-              className="col-md-6
+          {user.rol === "Estudiante" && (
+            <section className="row">
+              <div
+                className="col-md-6
               "
-            >
-              <Button variant="success" onClick={handleShow}>
-                + Agregar Avances
-              </Button>
+              >
+                <Button variant="success" onClick={handleShow}>
+                  + Agregar Avances
+                </Button>
 
-              <a href="/proyectos">
-                <button type="button" className="btn btn-danger">Cancelar</button>
-              </a>
-
-              <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                  <Modal.Title>Ingresa la información del avance</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                  <Form>
-                    <Form.Group
-                      className="mb-3"
-                      controlId="exampleForm.ControlTextarea1"
-                    >
-                      <Form.Label>Texto del avance</Form.Label>
-                      <Form.Control
-                        as="textarea"
-                        rows={3}
-                        value={avance}
-                        onChange={(e) => setAvance(e.target.value)}
-                      />
-                    </Form.Group>
-                  </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                  <Button variant="secondary" onClick={handleClose}>
-                    Close
-                  </Button>
-                  <Button variant="success" onClick={handleAgregarAvance}>
-                    Guardar cambios
-                  </Button>
-                </Modal.Footer>
-              </Modal>
-            </div>
-          </section>
+                <Modal show={show} onHide={handleClose}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Ingresa la información del avance</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <Form>
+                      <Form.Group
+                        className="mb-3"
+                        controlId="exampleForm.ControlTextarea1"
+                      >
+                        <Form.Label>Texto del avance</Form.Label>
+                        <Form.Control
+                          as="textarea"
+                          rows={3}
+                          value={avance}
+                          onChange={(e) => setAvance(e.target.value)}
+                        />
+                      </Form.Group>
+                    </Form>
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                      Close
+                    </Button>
+                    <Button variant="success" onClick={handleAgregarAvance}>
+                      Save Changes
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
+              </div>
+            </section>
+          )}
         </div>
       )}
     </>
